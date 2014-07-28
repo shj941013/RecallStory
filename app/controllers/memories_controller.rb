@@ -1,5 +1,7 @@
 class MemoriesController < ApplicationController
   before_action :set_memory, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @memories = Memory.all
@@ -9,22 +11,20 @@ class MemoriesController < ApplicationController
   end
 
   def new
-    @memory = Memory.new
+    @memory = current_user.memories.build
   end
 
   def edit
   end
 
   def create
-    @memory = Memory.new(memory_params)
+    @memory = current_user.memories.build(memory_params)
 
     respond_to do |format|
       if @memory.save
         format.html { redirect_to @memory, notice: 'Memory was successfully created.' }
-        format.json { render :show, status: :created, location: @memory }
       else
         format.html { render :new }
-        format.json { render json: @memory.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -55,6 +55,11 @@ class MemoriesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_memory
       @memory = Memory.find(params[:id])
+    end
+
+    def correct_user
+      @memory = current_user.memories.find_by(id: params[:id])
+      redirect_to memories.path, notice: "Not authorized to edit this memory" if memory.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

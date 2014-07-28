@@ -11,13 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140726034818) do
+ActiveRecord::Schema.define(version: 20140728051736) do
 
   create_table "memories", force: true do |t|
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "memories", ["user_id"], name: "index_memories_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
