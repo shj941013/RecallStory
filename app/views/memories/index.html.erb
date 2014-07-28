@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>Image</th>
       <th>Description</th>
       <th>User's Email</th>
       <th></th>
@@ -14,6 +15,7 @@
   <tbody>
     <% @memories.each do |memory| %>
       <tr>
+        <td><%= image_tag memory.image.url (:medium) %></td>
         <td><%= memory.description %></td>
         <td><%= memory.user.email if memory.user %></td>
         <td><%= link_to 'Show', memory %></td>
