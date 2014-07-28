@@ -59,7 +59,7 @@ class MemoriesController < ApplicationController
 
     def correct_user
       @memory = current_user.memories.find_by(id: params[:id])
-      redirect_to memories.path, notice: "Not authorized to edit this memory" if memory.nil?
+      redirect_to memories_path, notice: "Not authorized to edit this pin" if @memory.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
