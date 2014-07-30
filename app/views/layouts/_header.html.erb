@@ -8,29 +8,35 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <%= link_to "RecallStory", root_path, class: "navbar-brand" %>
+    
+    <%= link_to raw('<span class="glyphicon glyphicon-home"></span> RecallStory'), root_path, class: "navbar-brand" %>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav navbar-right">
-      <li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "About", about_path %></li> 
+
+<!-- nav search bar-->
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+
+<!-- nav search bar end -->
 
       <% if user_signed_in? %>
 
         <li>
-
           <%= link_to new_memory_path do%>
-          <span class="glyphicon glyphicon-plus"></span> Memories
+          <span class="glyphicon glyphicon-plus"></span>New Memory
           <% end %>
         </li>
 
-
         <li> 
-
           <%= link_to edit_user_registration_path do%>
-          <span class="glyphicon glyphicon-wrench"></san> Settings
+          <span class="glyphicon glyphicon-wrench"></san>
           <% end %>
         </li>
 
