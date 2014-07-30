@@ -1,35 +1,16 @@
-<h1>Listing memories</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Description</th>
-      <th>User </th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @memories.each do |memory| %>
-      <tr>
-        <td><%= image_tag memory.image.url (:medium) %></td>
-        <td><%= memory.description %></td>
-        <td><%= memory.user.email if memory.user %></td>
-        <td><%= link_to 'Show', memory %></td>
-          <% if memory.user == current_user %>
-        <td><%= link_to 'Edit', edit_memory_path(memory) %></td>
-        <td><%= link_to 'Destroy', memory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% end %> 
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<% if user_signed_in? %>
-<%= link_to 'New Memory', new_memory_path %>
-<% end %>
+<div id="memories" class="transitions-enabled">
+  <% @memories.each do |memory| %>
+    <div class="box panel panel-default">
+      <%= image_tag memory.image.url (:medium) %>
+        <div class="panel-body">
+        <%= memory.description %>
+        <%= memory.user.email if memory.user %>
+        <%= link_to 'Show', memory %>
+        <% if memory.user == current_user %>
+          <%= link_to 'Edit', edit_memory_path(memory) %>
+          <%= link_to 'Destroy', memory, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %> 
+      </div>
+    </div>
+  <% end %>
+</div>
