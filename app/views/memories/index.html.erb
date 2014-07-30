@@ -1,16 +1,28 @@
+<%= render 'pages/home' unless user_signed_in? %>
+
 <div id="memories" class="transitions-enabled">
   <% @memories.each do |memory| %>
     <div class="box panel panel-default">
-      <%= image_tag memory.image.url (:medium) %>
+      <%= link_to image_tag(memory.image.url (:medium)), memory_path(memory) %>
         <div class="panel-body">
-        <%= memory.description %>
-        <%= memory.user.email if memory.user %>
-        <%= link_to 'Show', memory %>
+        <%= memory.description %></br>
+        <strong><%= memory.user.email if memory.user %></strong>
+
+
         <% if memory.user == current_user %>
-          <%= link_to 'Edit', edit_memory_path(memory) %>
-          <%= link_to 'Destroy', memory, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <div class="actions">
+          
+            <%= link_to edit_memory_path(memory) do%>
+            <span class="glyphicon glyphicon-edit"></span> Edit
+            <%end %>
+          
+            <%= link_to memory, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <span class="glyphicon glyphicon-trash"></span> Delete
+            <% end %>
+          </div>
         <% end %> 
       </div>
+      <textarea class="form-control" rows="3"></textarea>
     </div>
   <% end %>
 </div>

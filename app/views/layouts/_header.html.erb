@@ -19,8 +19,20 @@
 
       <% if user_signed_in? %>
 
-        <li><%= link_to 'New Memory', new_memory_path %></li>
-        <li> <%= link_to "Account Settings", edit_user_registration_path%></li>
+        <li>
+
+          <%= link_to new_memory_path do%>
+          <span class="glyphicon glyphicon-plus"></span> Memories
+          <% end %>
+        </li>
+
+
+        <li> 
+
+          <%= link_to edit_user_registration_path do%>
+          <span class="glyphicon glyphicon-wrench"></san> Settings
+          <% end %>
+        </li>
 
         <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
         <% else %>

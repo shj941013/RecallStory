@@ -1,11 +1,24 @@
-<%= image_tag @memory.image.url (:medium) %>
-
-<p>
-  <strong>Description:</strong>
-  <%= @memory.description %>
-</p>
-
-<% if @memory.user == current_user %>
-	<%= link_to 'Edit', edit_memory_path(@memory) %> |
-<% end %>
 <%= link_to 'Back', memories_path %>
+
+<div class="row">
+	<div class="col-md-offset-2 col-md-8">
+		<div class="panel panel-default">
+			<div class="panel-heading center">
+				<%= image_tag @memory.image.url (:medium) %>
+			</div>
+			<div class="panel-body">
+				<p> <%= @memory.description %> </p>
+				<p><strong><%= @memory.user.email if @memory.user %></strong></p>
+
+			<% if @memory.user == current_user %>
+
+				<%= link_to edit_memory_path(@memory) do%>
+				<span class="glyphicon glyphicon-edit"></span> Edit
+				<% end %>
+				
+			<% end %>
+
+			</div>
+		</div>
+	</div>
+</div>
