@@ -22,7 +22,10 @@
           </div>
         <% end %> 
       </div>
-      <textarea class="form-control" rows="3"></textarea>
     </div>
   <% end %>
+</div>
+
+<div class="center">
+  <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
 </div>
