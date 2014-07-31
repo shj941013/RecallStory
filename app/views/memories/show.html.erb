@@ -8,7 +8,7 @@
 			</div>
 			<div class="panel-body">
 				<p> <%= @memory.description %> </p>
-				<p><strong><%= @memory.user.email if @memory.user %></strong></p>
+				<p><strong><%= @memory.user.name if @memory.user %></strong></p>
 
 			<% if @memory.user == current_user %>
 

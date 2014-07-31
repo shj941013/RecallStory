@@ -6,7 +6,7 @@
       <%= link_to image_tag(memory.image.url (:medium)), memory_path(memory) %>
         <div class="panel-body">
         <%= memory.description %></br>
-        <strong><%= memory.user.email if memory.user %></strong>
+        <strong><%= memory.user.name if memory.user %></strong>
 
 
         <% if memory.user == current_user %>
